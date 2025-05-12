@@ -114,6 +114,7 @@ const createVersionCheckWindow = async (paramObj) => {
         download_time:
           (progressObj.total - progressObj.transferred) /
           progressObj.bytesPerSecond,
+        delta: Math.round((progressObj.delta / 1e6) * 100) / 100,
       };
 
       if (progressObj.bytesPerSecond == 0) message['download_time'] = 0;

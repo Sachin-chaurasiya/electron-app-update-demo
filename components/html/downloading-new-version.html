@@ -82,6 +82,7 @@
       <div class="download-info">
         <span id="downloaded-size">0 MB / 0 MB</span>
         <span id="remaining-time">0 Min 0 Sec</span>
+        <span id="delta">0 MB</span>
       </div>
 
       <div id="status-message"></div>
@@ -103,6 +104,7 @@
             message.transferred + ' MB / ' + message.total_size + ' MB';
           document.getElementById('remaining-time').innerText =
             message.download_time;
+          document.getElementById('delta').innerText = message.delta + ' MB';
         } else if (message.event === 'error') {
           // Show error message
           document.getElementById(
