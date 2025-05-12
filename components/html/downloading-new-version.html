@@ -97,14 +97,19 @@
           document.getElementById('progress-bar').style.width =
             message.downloaded_percent + '%';
           document.getElementById('progress-percent').innerText =
-            message.downloaded_percent + '%';
+            'Progress: ' + message.downloaded_percent + '%';
           document.getElementById('download-speed').innerText =
-            message.download_speed + ' MB/s';
+            'Speed: ' + message.download_speed + ' MB/s';
           document.getElementById('downloaded-size').innerText =
-            message.transferred + ' MB / ' + message.total_size + ' MB';
+            'Downloaded: ' +
+            message.transferred +
+            ' MB / ' +
+            message.total_size +
+            ' MB';
           document.getElementById('remaining-time').innerText =
-            message.download_time;
-          document.getElementById('delta').innerText = message.delta + ' MB';
+            'Remaining: ' + message.download_time;
+          document.getElementById('delta').innerText =
+            'Delta: ' + message.delta + ' MB';
         } else if (message.event === 'error') {
           // Show error message
           document.getElementById(
