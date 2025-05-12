@@ -1,0 +1,41 @@
+{
+  "name": "update-demo",
+  "version": "1.0.0",
+  "description": "Electron auto-update demo app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --mac",
+    "publish": "electron-builder --mac --publish always"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sachin-chaurasiya/electron-app-update-demo.git"
+  },
+  "author": "Sachin Chaurasiya",
+  "license": "MIT",
+  "dependencies": {
+    "electron-updater": "^6.3.9"
+  },
+  "devDependencies": {
+    "electron": "^35.1.5",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.electron.update-demo",
+    "productName": "Update Demo",
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "hardenedRuntime": true
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "Sachin-chaurasiya",
+      "repo": "electron-app-update-demo"
+    }
+  }
+}

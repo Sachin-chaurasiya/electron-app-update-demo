@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Downloading Update</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f7f8fa;
+        overflow: hidden;
+      }
+      .container {
+        text-align: center;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        width: 400px;
+      }
+      h2 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+      p {
+        color: #666;
+        margin-bottom: 10px;
+      }
+      .progress-container {
+        width: 100%;
+        background-color: #f1f1f1;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .progress-bar {
+        width: 0%;
+        height: 20px;
+        background-color: #3498db;
+        border-radius: 10px;
+        transition: width 0.3s;
+      }
+      .error-message {
+        color: #e74c3c;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+      .success-message {
+        color: #2ecc71;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+      .download-info {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 5px;
+        margin-top: 10px;
+        font-size: 14px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Downloading Update</h2>
+      <p>Please wait while we download and install the update...</p>
+
+      <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+
+      <div class="download-info">
+        <span id="progress-percent">0%</span>
+        <span id="download-speed">0 MB/s</span>
+      </div>
+
+      <div class="download-info">
+        <span id="downloaded-size">0 MB / 0 MB</span>
+        <span id="remaining-time">0 Min 0 Sec</span>
+      </div>
+
+      <div id="status-message"></div>
+    </div>
+
+    <script>
+      const { ipcRenderer } = require('electron');
+
+      ipcRenderer.on('to-downloading-new-version', (event, message) => {
+        if (message.event === 'download_progress') {
+          // Update progress bar
+          document.getElementById('progress-bar').style.width =
+            message.downloaded_percent + '%';
+          document.getElementById('progress-percent').innerText =
+            message.downloaded_percent + '%';
+          document.getElementById('download-speed').innerText =
+            message.download_speed + ' MB/s';
+          document.getElementById('downloaded-size').innerText =
+            message.transferred + ' MB / ' + message.total_size + ' MB';
+          document.getElementById('remaining-time').innerText =
+            message.download_time;
+        } else if (message.event === 'error') {
+          // Show error message
+          document.getElementById(
+            'status-message'
+          ).innerHTML = `<div class="error-message">${message.message}</div>`;
+        } else if (message.event === 'success') {
+          // Show success message
+          document.getElementById('status-message').innerHTML =
+            '<div class="success-message">Update downloaded! The application will restart shortly.</div>';
+          // Signal back to the main process
+          ipcRenderer.send('from-downloading-new-version', {
+            event: 'success',
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
