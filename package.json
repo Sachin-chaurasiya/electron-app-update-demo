@@ -1,6 +1,6 @@
 {
   "name": "update-demo-app-updater",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Electron auto-update demo app",
   "main": "main.js",
   "scripts": {
