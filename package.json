@@ -1,6 +1,6 @@
 {
-  "name": "update-demo",
-  "version": "1.0.3",
+  "name": "update-demo-app",
+  "version": "1.0.7",
   "description": "Electron auto-update demo app",
   "main": "main.js",
   "scripts": {
@@ -22,14 +22,17 @@
     "electron-builder": "^25.1.8"
   },
   "build": {
-    "appId": "com.electron.update-demo",
-    "productName": "Update Demo",
+    "appId": "com.electron.update-demo-app",
+    "productName": "Update Demo App",
     "mac": {
       "category": "public.app-category.developer-tools",
       "target": [
         "dmg"
       ],
       "hardenedRuntime": true
+    },
+    "win": {
+      "target": "nsis"
     },
     "publish": {
       "provider": "github",

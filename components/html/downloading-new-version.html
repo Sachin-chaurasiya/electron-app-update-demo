@@ -82,7 +82,7 @@
       <div class="download-info">
         <span id="downloaded-size">0 MB / 0 MB</span>
         <span id="remaining-time">0 Min 0 Sec</span>
-        <span id="delta">0 MB</span>
+        <!-- <span id="delta">0 MB</span> -->
       </div>
 
       <div id="status-message"></div>
@@ -97,9 +97,9 @@
           document.getElementById('progress-bar').style.width =
             message.downloaded_percent + '%';
           document.getElementById('progress-percent').innerText =
-            'Progress: ' + message.downloaded_percent + '%';
+            message.downloaded_percent + '%';
           document.getElementById('download-speed').innerText =
-            'Speed: ' + message.download_speed + ' MB/s';
+            message.download_speed + ' MB/s';
           document.getElementById('downloaded-size').innerText =
             'Downloaded: ' +
             message.transferred +
@@ -108,8 +108,8 @@
             ' MB';
           document.getElementById('remaining-time').innerText =
             'Remaining: ' + message.download_time;
-          document.getElementById('delta').innerText =
-            'Delta: ' + message.delta + ' MB';
+          // document.getElementById('delta').innerText =
+          //   'Delta: ' + message.delta + ' MB';
         } else if (message.event === 'error') {
           // Show error message
           document.getElementById(
