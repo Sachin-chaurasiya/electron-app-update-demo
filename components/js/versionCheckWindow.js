@@ -84,7 +84,7 @@ const createVersionCheckWindow = async (paramObj) => {
       window.webContents.on('did-finish-load', () => {
         window.webContents.send('to-download-new-version', {
           event: 'update-available',
-          info: info,
+          info: { ...info, currentVersion: app.getVersion() },
         });
       });
     });
