@@ -1,6 +1,6 @@
 {
-  "name": "update-demo-app-updater",
-  "version": "1.0.9",
+  "name": "demo-app-v0.0.1",
+  "version": "0.0.2",
   "description": "Electron auto-update demo app",
   "main": "main.js",
   "scripts": {
@@ -22,8 +22,8 @@
     "electron-builder": "^25.1.8"
   },
   "build": {
-    "appId": "com.electron.update-demo-app",
-    "productName": "Update Demo App",
+    "appId": "com.electron.demo-app-v0.0.1",
+    "productName": "Demo App v0.0.1",
     "mac": {
       "category": "public.app-category.developer-tools",
       "target": [

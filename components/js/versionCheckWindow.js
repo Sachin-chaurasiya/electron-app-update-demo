@@ -143,7 +143,7 @@ const createVersionCheckWindow = async (paramObj) => {
       });
 
       setTimeout(() => {
-        autoUpdater.quitAndInstall();
+        autoUpdater.quitAndInstall(true);
       }, 3500);
     });
 
