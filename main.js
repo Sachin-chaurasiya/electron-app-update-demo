@@ -27,27 +27,24 @@ setPersistentState('SESSION_EVENT', '');
 let mainWindow;
 
 // Configure auto updater for production
-// if (process.env.ENV === PROD) {
-app.commandLine.appendSwitch('disable-http2');
-autoUpdater.requestHeaders = {
-  'Cache-Control':
-    'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
-};
+if (process.env.ENV === PROD) {
+  app.commandLine.appendSwitch('disable-http2');
+  autoUpdater.requestHeaders = {
+    'Cache-Control':
+      'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+  };
 
-// Set GitHub repo for updates
-autoUpdater.setFeedURL({
-  provider: 'github',
-  repo: 'electron-app-update-demo',
-  owner: 'Sachin-chaurasiya',
-  publisherName: ['test'],
-});
+  // Set GitHub repo for updates
+  autoUpdater.setFeedURL({
+    provider: 'github',
+    repo: 'electron-app-update-demo',
+    owner: 'Sachin-chaurasiya',
+    publisherName: ['test'],
+  });
 
-autoUpdater.autoDownload = false;
-// autoUpdater.forceDevUpdateConfig = true;
-// autoUpdater.disableWebInstaller = true;
-// autoUpdater.updateConfigPath = path.join(__dirname, 'dev-app-update.yml');
-console.log('Auto updater configured');
-// }
+  autoUpdater.autoDownload = false;
+  console.log('Auto updater configured');
+}
 
 // Handle version request from renderer
 ipcMain.on('get-app-version', (event) => {
