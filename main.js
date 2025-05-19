@@ -28,6 +28,7 @@ let mainWindow;
 
 // Configure auto updater for production
 if (process.env.ENV === PROD) {
+  console.log('Production environment', 'Setting up auto updater');
   app.commandLine.appendSwitch('disable-http2');
   autoUpdater.requestHeaders = {
     'Cache-Control':
