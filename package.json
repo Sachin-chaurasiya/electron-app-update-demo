@@ -1,6 +1,6 @@
 {
   "name": "update-demo-app-1",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Electron auto-update demo app",
   "main": "main.js",
   "scripts": {

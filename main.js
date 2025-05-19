@@ -43,7 +43,6 @@ if (process.env.ENV === PROD) {
   });
 
   autoUpdater.autoDownload = false;
-  console.log('Auto updater configured');
 }
 
 // Handle version request from renderer
